@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user_.label', default: 'User_')}" />
+        <g:set var="entityName" value="${message(code: 'userMan.label', default: 'UserMan')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -27,7 +27,7 @@
             </g:hasErrors>
             <g:form resource="${this.user_}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="user_"/>
+                    <f:all bean="userMan"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
