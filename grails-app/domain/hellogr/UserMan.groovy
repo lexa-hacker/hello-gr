@@ -30,6 +30,8 @@ class UserMan implements Serializable {
 	static constraints = {
 		password blank: false, password: true
 		username blank: false, unique: true
+		firstname blank: false
+		lastname blank: false
 	}
 
 	static mapping = {
