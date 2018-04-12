@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'userMan.label', default: 'UserMan')}" />
+        <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -44,7 +44,7 @@
                     <th>passwordExpired</th>
                 </sec:access>
             </tr>
-            <g:each in="${usersList}">
+            <g:each in="${personList}">
                 <tr>
                     <td>${it.id}</td>
                     <td>${it.username}</td>

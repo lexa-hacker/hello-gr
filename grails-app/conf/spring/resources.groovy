@@ -1,7 +1,7 @@
-import hellogr.UserManPasswordEncoderListener
+import hellogr.PersonPasswordEncoderListener
 // Place your Spring DSL code here
 beans = {
-    userManPasswordEncoderListener(UserManPasswordEncoderListener, ref('hibernateDatastore'))
-    userManPasswordEncoderListener(UserManPasswordEncoderListener, ref('hibernateDatastore'))
-    userManPasswordEncoderListener(UserManPasswordEncoderListener, ref('hibernateDatastore'))
+    personPasswordEncoderListener(PersonPasswordEncoderListener, ref('hibernateDatastore'))
+    personPasswordEncoderListener(PersonPasswordEncoderListener, ref('hibernateDatastore'))
+    personPasswordEncoderListener(PersonPasswordEncoderListener, ref('hibernateDatastore'))
 }

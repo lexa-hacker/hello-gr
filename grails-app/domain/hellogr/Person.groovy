@@ -7,7 +7,7 @@ import grails.compiler.GrailsCompileStatic
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
-class UserMan implements Serializable {
+class Person implements Serializable {
 
 	private static final long serialVersionUID = 1
 
@@ -24,7 +24,7 @@ class UserMan implements Serializable {
 	boolean passwordExpired
 
 	Set<Role> getAuthorities() {
-		(UserManRole.findAllByUserMan(this) as List<UserManRole>)*.role as Set<Role>
+		(PersonRole.findAllByPerson(this) as List<PersonRole>)*.role as Set<Role>
 	}
 
 	static constraints = {

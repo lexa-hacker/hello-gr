@@ -5,15 +5,15 @@ class BootStrap {
     def init = { servletContext ->
 
         def makeUser = {role ->
-            def newUser = new UserMan(firstname: 'Vasya', lastname: 'Pupkin', username: 'testuser', password: 'qwerty').save(flush: true)
-            UserManRole.create(newUser, role, true)
+            def newUser = new Person(firstname: 'Vasya', lastname: 'Pupkin', username: 'testuser', password: 'qwerty').save(flush: true)
+            PersonRole.create(newUser, role, true)
             println "****************New user with username: ${newUser.username} was created."
         }
 
         def roleAdmin = Role.findByAuthority('ROLE_ADMIN')
         if(roleAdmin){
             println '****************Role Admin already exists.'
-            def userRole = UserManRole.findByRole(roleAdmin)
+            def userRole = PersonRole.findByRole(roleAdmin)
             if(userRole)
                 println '****************At least one user with role Admin already exists.'
             else

@@ -159,8 +159,8 @@ environments {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'hellogr.UserMan'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'hellogr.UserManRole'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'hellogr.Person'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'hellogr.PersonRole'
 grails.plugin.springsecurity.authority.className = 'hellogr.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
@@ -173,8 +173,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/css/**',             access: ['permitAll']],
 	[pattern: '/**/images/**',          access: ['permitAll']],
 	[pattern: '/**/favicon.ico',        access: ['permitAll']],
-	[pattern: '/userMan/**',            access: ['ROLE_ADMIN', 'ROLE_USER']],
-    [pattern: '/userMan/createMan',     access: ['permitAll']]
+	[pattern: '/person/**',            access: ['ROLE_ADMIN', 'ROLE_USER']],
+    [pattern: '/person/createPerson',     access: ['permitAll']]
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [

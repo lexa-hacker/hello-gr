@@ -3,7 +3,7 @@ package hellogr
 class Car {
 
     Long id
-    UserMan userMan
+    Person person
     String model
     String version
 
