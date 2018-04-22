@@ -1,6 +1,10 @@
 package hellogr
 
+import grails.converters.JSON
+import hellogr.commands.PersonCommand
+
 class PersonController {
+    def personService
 
     def list(){
         def personList = Person.findAll()
@@ -13,41 +17,39 @@ class PersonController {
 
     def createPerson(PersonCommand cmd) {
 
-        if(request.getHeader("SecurityKey") == "1qaz!QAZ") {
+        if(personService.isLegal(request)) {
             if(cmd.hasErrors()){
-                def errMsg = "Following fields are incorrect or missing: "
-                cmd.errors.getFieldErrors().arguments.each{
-                    if(cmd.errors.getFieldErrors().arguments.indexOf(it))
-                        errMsg += ", "
+                String errMsg = "Following fields are incorrect or missing: "
+                cmd.errors.getFieldErrors().arguments.eachWithIndex{it, i ->
+                    if(i) errMsg += ", "
                     errMsg += it[0]
                 }
-                render(status: 500, text: errMsg)
+                render(status: 500, contentType: "application/json", [message: errMsg] as JSON)
             }
             else{
                 def newPerson
                 try{
                     if(!Person.findByUsername(cmd.username))
-                        newPerson = new Person(firstname: cmd.firstname, lastname: cmd.lastname, username: cmd.username, password: cmd.password).save(flush: true)
+                        newPerson = personService.createPerson(cmd.firstname,cmd.lastname,cmd.username,cmd.password)
                     else
-                        render(status: 500, text: "User with username \"${cmd.username}\" already exists.")
+                        render(status: 500, contentType: "application/json", [message: "User with username \"${cmd.username}\" already exists." as String] as JSON)
                 }
                 catch (Exception e){
-                    render(status: 500, text: e.message)
+                    render(status: 500, contentType: "application/json", [message: e.message] as JSON)
                 }
                 if(newPerson)
-                    render(status: 200, text: "User \"${newPerson.username}\" was created successfully.")
+                    render(status: 200,  contentType: "application/json", [message: "User \"${newPerson.username}\" was created successfully." as String] as JSON)
             }
         }
         else
-            render(status: 401, text: "Access denied!")
-
+            render(status: 401, contentType: "application/json", [message: "Access denied!"] as JSON)
     }
 
 }
 
-class PersonCommand {
+/*class PersonCommand {
     String firstname
     String lastname
     String username
     String password
-}
+}*/

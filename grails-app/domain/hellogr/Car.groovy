@@ -5,7 +5,7 @@ class Car {
     Long id
     Person person
     String model
-    String version
+    Integer version
 
     static mapping = {
         id generator: 'identity'

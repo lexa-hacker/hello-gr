@@ -14,7 +14,7 @@ class Person implements Serializable {
 	Long id
 	String firstname
 	String lastname
-	String version
+	Integer version
 
 	String username
 	String password
@@ -28,10 +28,10 @@ class Person implements Serializable {
 	}
 
 	static constraints = {
-		password blank: false, password: true
-		username blank: false, unique: true
+		password  blank: false, password: true
+		username  blank: false, unique: true
 		firstname blank: false
-		lastname blank: false
+		lastname  blank: false
 	}
 
 	static mapping = {

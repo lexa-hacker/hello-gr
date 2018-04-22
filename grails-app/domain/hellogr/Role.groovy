@@ -14,7 +14,7 @@ class Role implements Serializable {
 	String authority
 
 	Integer id
-	String version
+	Integer version
 
 	static constraints = {
 		authority blank: false, unique: true
