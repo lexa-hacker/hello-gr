@@ -15,8 +15,16 @@ class PersonControllerSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "Access granted with valid security key."() {
+        given:
+            request.addHeader('SecurityKey', '1qaz!QAZ')
+        expect:
+            controller.isLegal(request) == true
+    }
+    void "Access denied with invalid security key."() {
+        given:
+            request.addHeader('SecurityKey', 'invalidKey')
+        expect:
+            controller.isLegal(request) == false
     }
 }

@@ -17,7 +17,7 @@ class PersonController {
 
     def createPerson(PersonCommand cmd) {
 
-        if(personService.isLegal(request)) {
+        if(isLegal(request)) {
             if(cmd.hasErrors()){
                 String errMsg = "Following fields are incorrect or missing: "
                 cmd.errors.getFieldErrors().arguments.eachWithIndex{it, i ->
@@ -29,7 +29,7 @@ class PersonController {
             else{
                 def newPerson
                 try{
-                    if(!Person.findByUsername(cmd.username))
+                    if(!personService.findPerson(cmd.username))
                         newPerson = personService.createPerson(cmd.firstname,cmd.lastname,cmd.username,cmd.password)
                     else
                         render(status: 500, contentType: "application/json", [message: "User with username \"${cmd.username}\" already exists." as String] as JSON)
@@ -45,11 +45,7 @@ class PersonController {
             render(status: 401, contentType: "application/json", [message: "Access denied!"] as JSON)
     }
 
+    private isLegal(request){
+        request.getHeader("SecurityKey") == "1qaz!QAZ"
+    }
 }
-
-/*class PersonCommand {
-    String firstname
-    String lastname
-    String username
-    String password
-}*/

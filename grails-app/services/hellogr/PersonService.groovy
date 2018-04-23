@@ -5,8 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class PersonService {
 
-    def isLegal(request){
-        request.getHeader("SecurityKey") == "1qaz!QAZ"
+    def findPerson(username){
+        Person.findByUsername(username)
     }
 
     def createPerson(firstname, lastname, username, password){
